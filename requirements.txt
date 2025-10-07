@@ -1,0 +1,12 @@
+# Processamento de Audio
+librosa
+scipy
+pydub
+
+# Visualizacao
+matplotlib
+
+# Extracao de links (YouTube, etc)
+yt-dlp
+
+streamlit
