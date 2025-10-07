@@ -1,48 +1,122 @@
-# Soundwave Tattoo Generator
+# Projeto: Soundwave Art Generator
 
-Este projeto visa desenvolver uma aplicação web para gerar imagens de formas de onda sonora de alta resolução, utilizáveis como base para tatuagens. A aplicação suportará o upload de arquivos e a extração de áudio via link (YouTube).
+## Visão Geral do Projeto
 
-## Sprints
+O **Soundwave Art Generator** é uma aplicação web construída em Python (Streamlit) para transformar qualquer arquivo de áudio (MP3 ou WAV) em uma imagem PNG de alta resolução. O objetivo principal do projeto é servir como uma ferramenta minimalista e precisa para a criação de designs de tatuagens baseadas em ondas sonoras.
 
----
+Este projeto demonstra proficiência em **Processamento Digital de Sinais (DSP)**, **Visualização de Dados**, e **Desenvolvimento Web (*rapid prototyping*)**.
 
-## Fase 1: Core Logic e Processamento de Sinais
+-----
 
-**Objetivo:** Estabelecer o *back-end* principal capaz de processar o áudio e gerar a imagem de alta fidelidade.
+## Motivação e Storytelling
 
-| ID | Entregável | Status |
+A inspiração para o projeto surgiu do desejo de ter uma tatuagem de onda sonora, mas com um traço delicado (*fine-line*) e geometricamente preciso. A principal lacuna no mercado era a falta de controle sobre a **resolução (DPI)** e a **estilização minimalista** da onda, que muitas vezes é entregue em baixa qualidade ou com excesso de ruído visual.
+
+O código foi desenvolvido para garantir que o *core logic* entregue a visualização mais fiel possível do sinal de áudio, com alta qualidade (600 DPI) para arte final.
+
+-----
+
+## O que a Onda Sonora Representa (Física e DSP)
+
+O gráfico gerado pelo aplicativo é a **representação visual direta do Sinal de Amplitude no Domínio do Tempo** do seu arquivo de áudio.
+
+| Conceito | Representação no Gráfico | O que significa? |
 | :--- | :--- | :--- |
-| **1.1** | **Configuração do Ambiente:** Repositório inicial configurado com `requirements.txt` e ambiente Python com bibliotecas (`librosa`, `matplotlib`, `pydub`, `yt-dlp`). | ☐ |
-| **1.2** | **Módulo de Leitura de Arquivos:** Função Python robusta para carregar e decodificar arquivos de áudio nos formatos **WAV e MP3**, retornando o array de amplitude e a taxa de amostragem. | ☐ |
-| **1.3** | **Módulo de Geração Gráfica:** Função principal de visualização (`plot`) utilizando `matplotlib`, configurada para **eliminar eixos** (`plt.axis('off')`), garantir fundo transparente e salvar em **alta resolução (DPI > 600)** para impressão. | ☐ |
-| **1.4** | **Módulo de Extração de Link:** Implementação da lógica para receber um link (ex.: YouTube), extrair e baixar apenas o **stream de áudio** em um formato processável (ex.: temporário WAV/MP3). | ☐ |
-| **1.5** | **Testes Unitários:** Verificação da precisão da onda sonora gerada e teste de *edge cases* (arquivos corrompidos ou links indisponíveis) para garantir estabilidade do *core logic*. | ☐ |
+| **Amplitude ($\mathbf{Y}$)** | A **altura vertical** dos picos e vales. | O volume (intensidade) do som. Picos altos = som alto; Linha reta no centro = silêncio. |
+| **Domínio do Tempo ($\mathbf{X}$)** | O **eixo horizontal** da esquerda para a direita. | A duração do áudio. O ponto mais à esquerda é o início do som; o ponto mais à direita é o fim. |
+| **Taxa de Amostragem ($\mathbf{SR}$)** | A **densidade** de pontos no gráfico. | Quantos "pedaços" de áudio são medidos por segundo (geralmente 44100 Hz). É crucial para a fidelidade da onda. |
 
----
+-----
 
-## Fase 2: Desenvolvimento da Interface Web (Deployment Rápido)
+## Stack Tecnológico
 
-**Objetivo:** Criar uma interface funcional utilizando um *framework* Python para demonstrar e publicar o projeto rapidamente.
-
-| ID | Entregável | Status |
+| Categoria | Tecnologia | Uso |
 | :--- | :--- | :--- |
-| **2.1** | **Configuração do Framework:** Inicialização do projeto web utilizando **Streamlit/Flask**, criando a estrutura de rotas e o loop principal da aplicação. | ☐ |
-| **2.2** | **Interface de Usuário (Upload):** Implementação dos campos de *input* no *front-end* para **upload de arquivos** (`.mp3` / `.wav`) e submissão de **links de áudio** (URL). | ☐ |
-| **2.3** | **Integração Back-end/Front-end:** Conexão do formulário web com o Módulo de Geração Gráfica (Fase 1), garantindo que a imagem gerada seja renderizada na página. | ☐ |
-| **2.4** | **Estilização e UX:** Aplicação de *layout* limpo e minimalista (foco em estética Black & White), garantindo uma experiência de usuário fluida e responsiva para a visualização da onda. | ☐ |
-| **2.5** | **Download da Imagem:** Funcionalidade para o usuário fazer o *download* direto da imagem da onda sonora gerada em formato PNG de alta resolução. | ☐ |
+| **Linguagem** | Python 3.x | Lógica central e Web Framework. |
+| **Processamento Digital de Sinais (DSP)** | **`Librosa`** | Análise, leitura e decodificação do áudio (WAV/MP3). |
+| **Visualização** | **`Matplotlib`** | Geração do gráfico da forma de onda em alta resolução (PNG). |
+| **Interface Web** | **`Streamlit`** | Criação da interface de usuário (*rapid prototyping*). |
+| **Versionamento** | Git Flow | Gerenciamento de *branches* e histórico de desenvolvimento. |
 
----
+-----
 
-## Fase 3: Documentação e Implantação
+## Notas de Desenvolvimento e Versão Futura
 
-**Objetivo:** Finalizar o projeto para consumo público, otimizando o código e documentando o processo.
+### Tentativa de Extração de Link
 
-| ID | Entregável | Status |
-| :--- | :--- | :--- |
-| **3.1** | **Otimização e Refatoração:** Revisão do código Python (Fases 1 e 2) para melhor performance, clareza e aderência aos padrões de codificação (PEP 8). | ☐ |
-| **3.2** | **Documentação Técnica:** Criação/Aperfeiçoamento do `README.md` com explicação da motivação, arquitetura técnica e detalhes sobre o **Processamento Digital de Sinais (DSP)** utilizado. | ☐ |
-| **3.3** | **Deployment (Implantação):** Hospedagem do aplicativo em uma plataforma de nuvem (ex.: Heroku/Streamlit Sharing) para acesso público e demonstração. | ☐ |
-| **3.4** | **Licença e Agradecimentos:** Definição da licença de código aberto (ex.: MIT) e lista de colaboradores (se houver). | ☐ |
+A funcionalidade para extrair e cortar o áudio de *links* (ex: YouTube) foi iniciada, mas **removida** do código final para garantir a estabilidade e o *deployment* limpo. O desafio residia na dependência de ferramentas externas de sistema (**FFmpeg** e **yt-dlp**) para o processamento de áudio, o que introduzia complexidade na instalação e no *deployment*. A funcionalidade pode ser reintroduzida em uma *feature branch* futura.
 
----
+### Estilização Futura (Minimalismo Extremo)
+
+A versão atual da onda sonora é precisa e fina (utilizando `linewidth` baixo). No entanto, o objetivo final é atingir um visual ainda mais minimalista e *clean*. Isso exigirá **pesquisa e desenvolvimento (P\&D)** para:
+
+  * Implementar uma visualização no estilo **Peak Plot (Agulha)**, que simplifica a onda, plotando apenas os picos de energia (RMS) do áudio.
+  * Ajustar a densidade do gráfico sem comprometer a representação dos picos de volume.
+
+-----
+
+## Instalação e Execução
+
+### Pré-requisitos
+
+  * Python 3.8+
+  * Git
+
+### 1\. Clonar e Configurar o Ambiente
+
+```bash
+# 1. Clonar o repositório
+git clone https://www.youtube.com/watch?v=RqfwLeY952s
+cd [NOME-DO-PROJETO]
+
+# 2. Criar e Ativar o Ambiente Virtual
+python3 -m venv venv
+source venv/Scripts/activate  # Ou '.\venv\Scripts\Activate' no Windows Prompt/PowerShell
+
+# 3. Instalar Dependências
+pip install -r requirements.txt
+```
+
+### 2\. Executar a Aplicação Web
+
+Certifique-se de que seu ambiente `(venv)` está ativo:
+
+```bash
+streamlit run app.py
+```
+
+A aplicação será aberta automaticamente no seu navegador.
+
+-----
+
+## Cronograma do Projeto (Sprints)
+
+### Fase 1: Core Logic e Processamento de Sinais (Concluída)
+
+| Entregável | Status |
+| :--- | :--- |
+| **1.2** Módulo de Leitura de Arquivos (WAV/MP3) | ✅ |
+| **1.3** Módulo de Geração Gráfica (Alta Resolução) | ✅ |
+| **1.5** Implementação de Testes Unitários (`unittest`) | ✅ |
+
+### Fase 2: Desenvolvimento da Interface Web (Concluída)
+
+| Entregável | Status |
+| :--- | :--- |
+| **2.1** Configuração do Framework (Streamlit) | ✅ |
+| **2.2/2.3** Interface de Usuário e Integração com Core Logic | ✅ |
+| **2.4** Estilização e UX (Design Minimalista e Limpo) | ✅ |
+
+### Fase 3: Documentação e Implantação (Em Andamento)
+
+| Entregável | Status |
+| :--- | :--- |
+| **3.2** Documentação Técnica do README | ✅ |
+| **3.3** Implantação do Aplicativo Web (Deployment) | ☐ |
+| **3.4** Licença e Contribuição | ☐ |
+
+-----
+
+## Contribuição
+
+Contribuições, sugestões e relatórios de *bugs* são bem-vindos\! Siga o fluxo **Git Flow** para novas *features* e *hotfixes*.
