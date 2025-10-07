@@ -74,7 +74,7 @@ def process_and_display_waveform(uploaded_file):
 
         # 4. EXIBE A IMAGEM E OPCAO DE DOWNLOAD
         st.subheader("Sua Arte para Tatuagem")
-        st.image(output_image_path, caption='Arte final em PNG (Alta Resolução)', use_column_width=True)
+        st.image(output_image_path, caption='Arte final em PNG (Alta Resolução)', use_container_width=True)
         
         # Botao de download
         with open(output_image_path, "rb") as file:
